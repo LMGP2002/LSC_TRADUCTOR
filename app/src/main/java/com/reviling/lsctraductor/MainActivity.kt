@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             setSurfaceView(requireNotNull(surfaceView))
 
             //directory and model each as param
-            loadGlb(this@MainActivity, "grogu", "cabeza")
+            loadGlb(this@MainActivity, "grogu", "1")
             //loadGltf(this@MainActivity, "warcraft", "scene");
 
             //directory and model as one

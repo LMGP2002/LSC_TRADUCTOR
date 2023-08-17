@@ -3,13 +3,17 @@ package com.reviling.lsctraductor
 import android.content.Context
 import android.view.Choreographer
 import android.view.SurfaceView
+import androidx.annotation.IntRange
 import com.google.android.filament.Skybox
+import com.google.android.filament.gltfio.Animator
+import com.google.android.filament.gltfio.Gltfio
 import com.google.android.filament.utils.KTXLoader
 import com.google.android.filament.utils.ModelViewer
 import com.google.android.filament.utils.Utils
 import java.nio.ByteBuffer
 
 class CustomViewer {
+
     companion object {
         init {
             Utils.init()
@@ -19,9 +23,19 @@ class CustomViewer {
     private lateinit var choreographer: Choreographer
     private lateinit var modelViewer: ModelViewer
 
+
+
     fun loadEntity() {
         choreographer = Choreographer.getInstance()
     }
+
+    fun loadAnimator() {
+        choreographer = Choreographer.getInstance()
+    }
+
+
+
+
 
     fun setSurfaceView(mSurfaceView: SurfaceView) {
         modelViewer = ModelViewer(mSurfaceView)
@@ -29,9 +43,12 @@ class CustomViewer {
 
         //Skybox and background color
         //without this part the scene'll appear broken
+        modelViewer.cameraFocalLength=52f
         modelViewer.scene.skybox = Skybox.Builder().build(modelViewer.engine)
         modelViewer.scene.skybox?.setColor(1.0f, 1.0f, 1.0f, 1.0f) //White color
     }
+
+
 
     fun loadGlb(context: Context, name: String) {
         val buffer = readAsset(context, "models/${name}.glb")
@@ -46,6 +63,7 @@ class CustomViewer {
         modelViewer.apply {
             loadModelGlb(buffer)
             transformToUnitCube()
+
         }
     }
 
@@ -77,7 +95,7 @@ class CustomViewer {
         // Create the indirect light source and add it to the scene.
         val buffer = readAsset(context, "environments/venetian_crossroads_2k/${ibl}_ibl.ktx")
         KTXLoader.createIndirectLight(modelViewer.engine, buffer).apply {
-            intensity = 50_000f
+            intensity = 10_000f
             modelViewer.scene.indirectLight = this
         }
     }

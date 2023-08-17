@@ -1,6 +1,7 @@
 package com.reviling.lsctraductor
 
 import android.os.Bundle
+import android.util.Log
 import android.view.SurfaceView
 import android.view.View
 import android.widget.Button
@@ -39,8 +40,9 @@ class MainActivity : AppCompatActivity() {
             setSurfaceView(requireNotNull(surfaceView))
 
             //directory and model each as param
-            loadGlb(this@MainActivity, "grogu", "1")
+            loadGlb(this@MainActivity, "grogu", "animation")
             //loadGltf(this@MainActivity, "warcraft", "scene");
+
 
             //directory and model as one
             //loadGlb(this@MainActivity, "grogu/grogu");
@@ -48,6 +50,7 @@ class MainActivity : AppCompatActivity() {
             //Enviroments and Lightning (OPTIONAL)
             loadIndirectLight(this@MainActivity, "venetian_crossroads_2k")
             //loadEnviroment(this@MainActivity, "venetian_crossroads_2k");
+
         }
         //Instancias Traductor
         editText = findViewById(R.id.editText)
@@ -122,5 +125,10 @@ class MainActivity : AppCompatActivity() {
         println("Coincide con: $mejorClave Similitud: $similitudMaxima")
         // Mostrar el resultado en el TextView (en el hilo principal)
         textView.text = "Coincide con: $mejorClave Similitud: $similitudMaxima"
+
+
+
+
+
     }
 }
